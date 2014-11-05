@@ -1,0 +1,34 @@
+attendanceemployed:
+    pattern:  /
+    defaults: { _controller: "AcmeKindergartenBundle:AttendanceEmployed:index" }
+
+attendanceemployed_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "AcmeKindergartenBundle:AttendanceEmployed:show" }
+
+attendanceemployed_new:
+    pattern:  /new
+    defaults: { _controller: "AcmeKindergartenBundle:AttendanceEmployed:new" }
+
+attendanceemployed_create:
+    pattern:  /create
+    defaults: { _controller: "AcmeKindergartenBundle:AttendanceEmployed:create" }
+    requirements: { _method: post }
+
+attendanceemployed_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "AcmeKindergartenBundle:AttendanceEmployed:edit" }
+
+attendanceemployed_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "AcmeKindergartenBundle:AttendanceEmployed:update" }
+    requirements: { _method: post }
+
+attendanceemployed_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "AcmeKindergartenBundle:AttendanceEmployed:delete" }
+    requirements: { _method: post }
+
+attendanceemployed_infochild:
+    pattern:  /attendance
+    defaults: { _controller: "AcmeKindergartenBundle:AttendanceEmployed:new" }

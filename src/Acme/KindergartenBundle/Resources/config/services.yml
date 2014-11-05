@@ -1,0 +1,7 @@
+parameters:
+#    acme_kindergarten.example.class: Acme\KindergartenBundle\Example
+
+services:
+#    acme_kindergarten.example:
+#        class: %acme_kindergarten.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

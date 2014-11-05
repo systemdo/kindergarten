@@ -1,0 +1,30 @@
+employeds:
+    pattern:  /
+    defaults: { _controller: "AcmeEmployedBundle:Employeds:index" }
+
+employeds_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "AcmeEmployedBundle:Employeds:show" }
+
+employeds_new:
+    pattern:  /new
+    defaults: { _controller: "AcmeEmployedBundle:Employeds:new" }
+
+employeds_create:
+    pattern:  /create
+    defaults: { _controller: "AcmeEmployedBundle:Employeds:create" }
+    requirements: { _method: post }
+
+employeds_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "AcmeEmployedBundle:Employeds:edit" }
+
+employeds_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "AcmeEmployedBundle:Employeds:update" }
+    requirements: { _method: post }
+
+employeds_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "AcmeEmployedBundle:Employeds:delete" }
+    requirements: { _method: post }

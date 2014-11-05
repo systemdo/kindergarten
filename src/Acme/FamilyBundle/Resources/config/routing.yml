@@ -1,0 +1,8 @@
+acme_family_families:
+    resource: "@AcmeFamilyBundle/Resources/config/routing/families.yml"
+    prefix:   /families
+
+AcmeFamilyBundle_parentage:
+        resource: "@AcmeFamilyBundle/Resources/config/routing/parentage.yml"
+        prefix:   /parentage
+

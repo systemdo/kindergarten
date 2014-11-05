@@ -1,0 +1,8 @@
+acme_system_login:
+    resource: "@AcmeSystemBundle/Resources/config/routing/login.yml"
+    prefix:   /login
+
+acme_system_changepassword:
+    resource: "@AcmeSystemBundle/Resources/config/routing/changepassword.yml"
+    prefix:   /changepassword
+

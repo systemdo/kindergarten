@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+        
+
+        Licensed under the Apache License v2.0
+        http://www.apache.org/licenses/LICENSE-2.0
+
+        ===
+    -->
+    <meta charset="utf-8">
+    <title>{% block title %}KinderGarten{% endblock %}</title>
+     {% block stylesheets %}
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- The styles -->
+    
+    
+    <link href="{{ asset('bundles/acmethemes/kinder/css/jquery.dataTables.min.css')}}" rel="stylesheet">
+    <!--<link href="{{ asset('bundles/acmethemes/kinder/ui/css/jquery-ui.theme.css')}}" rel="stylesheet">-->
+    <link href="{{ asset('bundles/acmethemes/kinder/ui/css/jquery-ui.structure.css')}}" rel="stylesheet">
+    <link href="{{ asset('bundles/acmethemes/kinder/ui/css/jquery-ui.css')}}" rel="stylesheet">
+   <link href="{{ asset('bundles/acmethemes/kinder/css/bootstrap-amelia.min.css')}}" rel="stylesheet">
+   
+   <link href="{{ asset('bundles/acmethemes/kinder/css/kindergarden.css')}}" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="{{ asset('bundles/acmethemes/kinder/bower_components/html5shiv/dist/html5shiv.js')}}"></script>
+      <script src="{{ asset('bundles/acmethemes/kinder/bower_components/respond/dest/respond.min.js')}}"></script>
+    <![endif]-->
+    <!-- The fav icon -->
+
+    <script src="{{ asset('bundles/acmethemes/kinder/bower_components/jquery/jquery.min.js')}}"></script>
+
+    <link rel="shortcut icon" href="img/favicon.ico">
+    {% endblock %}
+</head>
+
+<body>
+{% block sidebar %}
+    <!-- topbar starts -->
+    {% if app.session.has('kg') or is_granted('ROLE_SUPER_ADMIN') %}
+    <div id="menu" class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a href="../" class="navbar-brand">KinderGarden</a>
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+          <ul class="nav navbar-nav">
+
+                <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="/children" id="children">
+                    <i class="glyphicon glyphicon-eye-open"></i>
+                    Children
+                    <span class="caret"></span>
+                </a>    
+                    <ul class="dropdown-menu" aria-labelledby="children">
+                        <li>
+                            <a href="{{path('children')}}">
+                                <i class="glyphicon glyphicon-eye-open"></i>
+                                <span>Children</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{path('families')}}">
+                                <i class="glyphicon glyphicon-eye-open"></i>
+                                <span>Family</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+              <li>
+                    <a href="{{path('attendancechildren')}}">
+                    <i class="glyphicon glyphicon-home"></i><span> Dashboard</span>
+                    </a>
+                </li>
+
+            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') %}                 
+             <li>
+                    <a href="{{path('employeds')}}">
+                        <i class="glyphicon glyphicon-home"></i><span> Employeeds</span>
+                    </a>
+            </li>
+            {% endif %}
+            {% if is_granted('ROLE_SUPER_ADMIN') %}             
+            <li>
+                <a href="{{path('users')}}">
+                    <i class="glyphicon glyphicon-home"></i><span> Users</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{path('contracts')}}">
+                    <i class="glyphicon glyphicon-home"></i><span> Contracts</span>
+                </a>
+            </li>
+            {% endif %}
+          </ul>
+           {% if app.user %}
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="user">
+                    <i class="glyphicon">
+                           {% if  app.user.employed.image != null or app.user.employed.image != false %}
+                                    <img width= "35px" src="/uploads/{{app.user.employed.image.path}}{{ app.user.employed.image.name }}">
+                                    {% else %}
+                                    <img width= "35px" src="/default/image/">
+                                    {% endif %} 
+                    </i>
+                    {{app.user.employed.surname}}
+                    <span class="caret"></span>
+                </a> 
+                <ul class="dropdown-menu" aria-labelledby="user">
+                        <li>
+                            <a href="{{path('changepassword')}}">
+                                <i class="glyphicon glyphicon-eye-open"></i>
+                                <span>ChangePassword</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{path('login_logout')}}">
+                                <i class="glyphicon glyphicon-eye-open"></i>
+                                <span>Logout</span>
+                            </a>
+                        </li>
+                </ul>
+            </li>
+          </ul>
+          {% endif %}
+        </div>
+        </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+       <div class="container">
+         <div class="page-header" id="banner">
+    
+         </div>
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12">
+         {% block body %}{% endblock %}
+    
+       
+        </div>
+        </div>
+        </div>
+
+            
+
+
+    
+    
+    <footer class="row">
+        {% block footer %}{% endblock %}
+    </footer>
+
+
+<!-- external javascript -->
+{% block javascripts %}
+    <script src="{{('/bundles/acmethemes/kinder/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+   <script src="{{('/bundles/acmethemes/kinder/ui/js/jquery-ui.min.js')}}"></script>
+   
+   <!--<script src="{{('/bundles/acmethemes/kinder/js/kindergarten.js')}}"></script>-->
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,152 @@
+{% extends "AcmeThemesBundle::layout.html.twig" %}
+{% block body %}
+<div class="row"><!--1-->
+ <div class="row row-centered">
+    <div class="box col-md-12 centered">
+    <p class="center-block"> 
+         <a href="{{ path('children') }}" class="btn btn-primary btn-lg">
+            <i class="glyphicon glyphicon-chevron-left glyphicon-white"></i>
+             Back
+       </a>
+       <a class="btn btn-primary btn-lg" href="{{ path('children') }}">
+            <i class="glyphicon glyphicon-cog"></i>
+            Go to Children
+        </a>
+    </p>
+    </div>
+    </div>
+    <div class="accordion">
+         <h3>Datas</h3>
+        <div>
+       
+                <form action="{{ path('emergencydatas_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+                    {{ form_widget(edit_form) }}
+                    <p>
+                        <button class="btn btn-info" type="submit">
+                        <i class="glyphicon glyphicon-trash icon-white"></i>
+                            Edit
+                        </button>
+                    </p>
+                </form>
+
+                <form action="{{ path('emergencydatas_delete', { 'id': entity.id }) }}" method="post">
+                    {{ form_widget(delete_form) }}
+                    <button type="submit" class="btn btn-danger">
+                             <i class="glyphicon glyphicon-trash icon-white"></i>
+                             Delete
+                    </button>     
+           
+    </div><!--/span--><!--end2-->
+
+      <h3>Doctor</h3>
+            <div>
+            {%- if entity.doctor == false -%}
+                    <tr>
+                        <th>
+                            <p class="center-block">
+                            <a href="{{ path('doctors_new') }}" class="btn btn-primary btn-lg">
+                            <i class="glyphicon glyphicon-chevron-left glyphicon-white"></i> 
+                            Create Doctor
+                            </a>
+                        </p>
+                    < /th>
+                    </tr>
+                 {%else%}
+                <tr>
+                <td colspan="2">
+                        <table class="table table-bordered">
+                         <tbody>
+         
+                            <tr>
+                            <th>Name</th>
+                            <td>{{ entity.doctor.name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Surname</th>
+                                <td>{{ entity.doctor.surname }}</td>
+                            </tr>
+                            {% if entity.doctor.address %}
+                                 <tr>
+                                    <th>Street</th>
+                                    <td>{{ entity.doctor.address.street }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Number</th>
+                                    <td>{{ entity.doctor.address.number }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Complement</th>
+                                    <td>{{ entity.doctor.address.complement }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Ciudad</th>
+                                    <td>{{ entity.doctor.address.ciudad }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Postcode</th>
+                                    <td>{{ entity.doctor.address.postcode }}</td>
+                                </tr>   
+                                {% endif %}
+                                {% if entity.doctor.contact %}
+                                <tr>
+                                    <th>Phone</th>
+                                    <td>{{ entity.doctor.contact.phone }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Secondphone</th>
+                                    <td>{{ entity.doctor.contact.secondPhone }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Email</th>
+                                    <td>{{ entity.doctor.contact.email }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Phonejob</th>
+                                    <td>{{ entity.doctor.contact.phoneJob }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Secondphonejob</th>
+                                    <td>{{ entity.doctor.contact.secondPhoneJob }}</td>
+                                </tr>
+                                {% endif %}
+                           </tbody>
+                        </table>   
+                  </td>  
+                </tr> 
+        <tr>
+        <td colspan="2">
+       <p> 
+      <a class="btn btn-info" href="{{ path('doctors_edit', { 'id': entity.doctor.id }) }}">
+            <i class="glyphicon glyphicon-edit icon-white"></i>
+            Edit
+        </a>
+        <form action="{{ path('doctors_delete', { 'id': entity.doctor.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit" class="btn btn-danger">
+                 <i class="glyphicon glyphicon-trash icon-white"></i>
+                 Delete
+            </button>
+        </form>
+       </td> 
+       </tr> 
+               {%- endif -%} 
+            </div><!--end acc doctor-->
+        </div><!--end accc-->
+    </div><!--/span--><!--end2-->
+</div>
+{% javascripts
+    '@AcmeThemesBundle/Resources/public/kinder/bower_components/bootstrap/dist/js/*'
+    
+    '@AcmeThemesBundle/Resources/public/kinder/ui/js/jquery-ui.min.js'
+    '@AcmeThemesBundle/Resources/public/kinder/js/kindergarten.js'
+    
+    %}
+
+    <script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+
+<script type="text/javascript">
+    //kindergarten.layoutDate();
+    kindergarten.panelAccordion();
+</script>
+ {% endblock %}

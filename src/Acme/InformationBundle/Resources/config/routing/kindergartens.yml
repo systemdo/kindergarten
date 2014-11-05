@@ -1,0 +1,39 @@
+kindergartens:
+    pattern:  /
+    defaults: { _controller: "AcmeInformationBundle:Kindergartens:index" }
+
+kindergartens_choose:
+    pattern:  /choose 
+    defaults: { _controller: "AcmeInformationBundle:Kindergartens:choose" }
+
+kindergartens_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "AcmeInformationBundle:Kindergartens:show" }
+
+kindergartens_new:
+    pattern:  /new
+    defaults: { _controller: "AcmeInformationBundle:Kindergartens:new" }
+
+kindergartens_sessionkg:
+    pattern:  /sessionkg
+    defaults: { _controller: "AcmeInformationBundle:Kindergartens:setKG" }
+    requirements: { _method: post }
+
+kindergartens_create:
+    pattern:  /create
+    defaults: { _controller: "AcmeInformationBundle:Kindergartens:create" }
+    requirements: { _method: post }
+
+kindergartens_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "AcmeInformationBundle:Kindergartens:edit" }
+
+kindergartens_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "AcmeInformationBundle:Kindergartens:update" }
+    requirements: { _method: post }
+
+kindergartens_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "AcmeInformationBundle:Kindergartens:delete" }
+    requirements: { _method: post }

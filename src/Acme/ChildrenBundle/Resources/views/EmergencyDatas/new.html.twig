@@ -1,0 +1,25 @@
+{% extends "AcmeThemesBundle::layout.html.twig" %}
+{% block body %}
+<div class="row"><!--1-->
+        <div class="box col-md-12"><!--2-->
+            <div class="box-inner"><!--3-->
+                <div class="box-header well" data-original-title="">
+                   <h2><i class="glyphicon glyphicon-user"></i> Emergancys Datas</h2>
+
+           
+                </div>
+                <div class="box-content"><!--4-->
+
+
+<form action="{{ path('emergencydatas_create') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <p>
+        <button type="submit" class="btn btn-default">Create</button>
+    </p>
+</form>
+
+</div><!--end4-->
+        </div><!--end3-->
+        </div><!--/span--><!--end2-->
+    </div><!--end1-->
+{% endblock %}    

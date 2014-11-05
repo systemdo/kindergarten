@@ -1,0 +1,30 @@
+parentage:
+    pattern:  /
+    defaults: { _controller: "AcmeFamilyBundle:Parentage:index" }
+
+parentage_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "AcmeFamilyBundle:Parentage:show" }
+
+parentage_new:
+    pattern:  /new
+    defaults: { _controller: "AcmeFamilyBundle:Parentage:new" }
+
+parentage_create:
+    pattern:  /create
+    defaults: { _controller: "AcmeFamilyBundle:Parentage:create" }
+    requirements: { _method: post }
+
+parentage_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "AcmeFamilyBundle:Parentage:edit" }
+
+parentage_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "AcmeFamilyBundle:Parentage:update" }
+    requirements: { _method: post }
+
+parentage_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "AcmeFamilyBundle:Parentage:delete" }
+    requirements: { _method: post }

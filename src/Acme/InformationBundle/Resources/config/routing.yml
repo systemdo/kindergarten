@@ -1,0 +1,17 @@
+acme_information_address:
+    resource: "@AcmeInformationBundle/Resources/config/routing/address.yml"
+    prefix:   /address
+
+AcmeInformationBundle_contact:
+        resource: "@AcmeInformationBundle/Resources/config/routing/contact.yml"
+        prefix:   /contact
+
+AcmeInformationBundle_kindergartens:
+        resource: "@AcmeInformationBundle/Resources/config/routing/kindergartens.yml"
+        prefix:   /kindergartens
+
+AcmeInformationBundle_contracts:
+        resource: "@AcmeInformationBundle/Resources/config/routing/contracts.yml"
+        prefix:   /contracts
+
+

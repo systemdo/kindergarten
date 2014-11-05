@@ -1,0 +1,30 @@
+vaccines:
+    pattern:  /
+    defaults: { _controller: "AcmeChildrenBundle:Vaccines:index" }
+
+vaccines_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "AcmeChildrenBundle:Vaccines:show" }
+
+vaccines_new:
+    pattern:  /new
+    defaults: { _controller: "AcmeChildrenBundle:Vaccines:new" }
+
+vaccines_create:
+    pattern:  /create
+    defaults: { _controller: "AcmeChildrenBundle:Vaccines:create" }
+    requirements: { _method: post }
+
+vaccines_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "AcmeChildrenBundle:Vaccines:edit" }
+
+vaccines_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "AcmeChildrenBundle:Vaccines:update" }
+    requirements: { _method: post }
+
+vaccines_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "AcmeChildrenBundle:Vaccines:delete" }
+    requirements: { _method: post }

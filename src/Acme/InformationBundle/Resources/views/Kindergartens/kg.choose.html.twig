@@ -1,0 +1,66 @@
+{% extends "AcmeThemesBundle::layout.html.twig" %}
+{% block body %}
+ <style>
+  #selectable .ui-selecting { background: #FECA40; }
+  #selectable .ui-selected { background: #F39814; color: white; }
+  #selectable { list-style-type: none; margin: 0; padding: 0; width: 450px; }
+  #selectable li { margin: 3px; padding: 1px; float: left; width: 100%; height: 80px; font-size: 4em; text-align: center; }
+  </style>
+<div class="row"><!--1-->
+        <div class="box col-md-12"><!--2-->
+        {% if entities == false or entities == null  %}       
+            <div class="row row-centered">
+            <div class="box col-md-12 centered">
+                
+                <p class="center-block"> 
+                  {% if is_granted('ROLE_SUPER_ADMIN') %} 
+                   <a class="btn btn-primary btn-lg" href="{{ path('kindergartens_new') }}">
+                        <i class="glyphicon glyphicon-cog"></i>
+                        new
+                    </a>
+                    {% else %} 
+                    <h2>Contact The SuperAdmin</h2>
+                    {% endif %}
+                 </p>   
+             </div>
+             </div>
+             {% else %}    
+                <div class="row row-centered">
+            <div class="box col-md-12 centered">
+                
+                <p class="center-block"> 
+                    <ol id="selectable">        
+                        {% for entity in entities %}
+                             {% if is_granted('ROLE_SUPER_ADMIN') %} 
+                            <li id="{{entity.id}}"class="ui-state-default">{{entity.name}} </li>
+                        {% else %}
+                            <li class="ui-state-default">{{entity.name}} </li>
+                        {% endif %}
+                        {% endfor %}
+                    </ol> 
+                    </p>
+                </div>
+                </div>
+                {% endif %}
+        </div><!--/span--><!--end2-->
+    </div><!--end1-->
+{% javascripts
+    '@AcmeThemesBundle/Resources/public/kinder/bower_components/bootstrap/dist/js/*'
+    
+    '@AcmeThemesBundle/Resources/public/kinder/js/jquery.dataTables.min.js'
+    '@AcmeThemesBundle/Resources/public/kinder/js/dataTables.bootstrap.js'
+    
+    '@AcmeThemesBundle/Resources/public/kinder/ui/js/*'
+    '@AcmeThemesBundle/Resources/public/kinder/js/kindergarten.js'
+    
+    %}
+
+    <script src="{{ asset_url }}"></script>
+
+
+{% endjavascripts %}
+
+<script type="text/javascript">
+    kindergarten.layoutChoose();
+</script>
+{% endblock %}

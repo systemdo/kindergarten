@@ -1,0 +1,24 @@
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
+
+table.dataTable tbody tr {
+background-color: #108a93;
+}
+
+.button-group{
+    overflow: hidden;
+}
+.button-group .button-edit, .button-group .button-delete{
+
+    float:left;
+    margin-right: 2%;
+}

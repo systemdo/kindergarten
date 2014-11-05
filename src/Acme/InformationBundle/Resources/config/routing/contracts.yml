@@ -1,0 +1,30 @@
+contracts:
+    pattern:  /
+    defaults: { _controller: "AcmeInformationBundle:Contracts:index" }
+
+contracts_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "AcmeInformationBundle:Contracts:show" }
+
+contracts_new:
+    pattern:  /new
+    defaults: { _controller: "AcmeInformationBundle:Contracts:new" }
+
+contracts_create:
+    pattern:  /create
+    defaults: { _controller: "AcmeInformationBundle:Contracts:create" }
+    requirements: { _method: post }
+
+contracts_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "AcmeInformationBundle:Contracts:edit" }
+
+contracts_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "AcmeInformationBundle:Contracts:update" }
+    requirements: { _method: post }
+
+contracts_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "AcmeInformationBundle:Contracts:delete" }
+    requirements: { _method: post }

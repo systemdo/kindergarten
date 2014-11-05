@@ -1,0 +1,64 @@
+jms_security_extra:
+    secure_all_services: false
+    expressions: true
+
+security:
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
+        Acme\UsersBundle\Entity\Users:
+            algorithm: sha512
+            encode-as-base64: true
+            iterations: 10
+
+    #role_hierarchy:
+        #ROLE_ADMIN:       [ROLE_ADMIN, ROLE_USER]
+        #ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+       # chain_provider:
+       #      chain:
+       #          providers: [in_memory, user_db]
+       user_db:
+            entity: { class: Acme\UsersBundle\Entity\Users, property: username }
+
+        # in_memory:
+        #     memory:
+        #         users:
+        #             user:  { password: userpass, roles: [ 'ROLE_USER' ] }
+        #             admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+
+    firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        login:
+            pattern:  /login
+            security: false
+
+        login:
+            pattern:   ^/
+            provider: user_db
+            form_login:
+                login_path: /login
+                check_path: login_check
+            logout:
+                path: /login/logout
+                target: /login
+            anonymous: ~
+            #http_basic:
+            #    realm: "Secured Demo Area"
+
+    access_control:
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/families, roles: [ROLE_BASIC, ROLE_SUPER_ADMIN,ROLE_ADMIN]}
+        - { path: ^/children, roles: [ROLE_BASIC, ROLE_SUPER_ADMIN,ROLE_ADMIN ]}
+        - { path: ^/kindergarten, roles: ROLE_SUPER_ADMIN}
+        - { path: ^/users, roles: ROLE_SUPER_ADMIN}
+        - { path: ^/, roles: [ROLE_BASIC, ROLE_SUPER_ADMIN,ROLE_ADMIN ]}
+        - { path: ^/attendancechildren, roles: [ROLE_BASIC, ROLE_SUPER_ADMIN,ROLE_ADMIN ]}
+        #
+        # You must uncomment the two following rules to restrict access to paths
+        # starting with the /_internal prefix to only localhost
+        #- { path: ^/_internal/secure, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }
+        #- { path: ^/_internal/secure, roles: ROLE_NO_ACCESS }

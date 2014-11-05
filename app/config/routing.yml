@@ -1,0 +1,52 @@
+_welcome:
+    pattern:  /
+    defaults: { _controller: AcmeChildrenBundle:Children:index }
+
+acme_kindergarten:
+    resource: "@AcmeKindergartenBundle/Resources/config/routing.yml"
+    prefix:   /
+
+acme_themes:
+    resource: "@AcmeThemesBundle/Resources/config/routing.yml"
+    prefix:   /
+
+acme_employed:
+    resource: "@AcmeEmployedBundle/Resources/config/routing.yml"
+    prefix:   /
+
+acme_users:
+    resource: "@AcmeUsersBundle/Resources/config/routing.yml"
+    prefix:   /
+
+acme_information:
+    resource: "@AcmeInformationBundle/Resources/config/routing.yml"
+    prefix:   /
+
+acme_family:
+    resource: "@AcmeFamilyBundle/Resources/config/routing.yml"
+    prefix:   /
+
+acme_children:
+    resource: "@AcmeChildrenBundle/Resources/config/routing.yml"
+    prefix:   /
+
+acme_system:
+    resource: "@AcmeSystemBundle/Resources/config/routing.yml"
+    prefix:   /
+
+# acme_children:
+#     resource: "@AcmeChildrenBundle/Controller/"
+#     type:     annotation
+#     prefix:   /
+
+# acme_kinder:
+#     resource: "@AcmeKinderBundle/Resources/config/routing.yml"
+#     prefix:   /
+# Internal routing configuration to handle ESI
+# ****** WARNING ******
+# This route should be enabled with caution as it can open a security vulnerability
+# see http://symfony.com/blog/security-release-symfony-2-0-20-and-2-1-5-released for more information
+# ****** WARNING ******
+#_internal:
+#    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
+#    prefix:   /_internal

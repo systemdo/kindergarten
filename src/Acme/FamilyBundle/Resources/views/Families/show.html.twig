@@ -1,0 +1,247 @@
+{% extends "AcmeThemesBundle::layout.html.twig" %}
+{% block body %}
+<div class="row"><!--1-->
+ <div class="box col-md-12"><!--2-->
+    <div class="row row-centered">
+    <div class="box col-md-12 centered">
+        <p class="center-block">   
+            <a href="{{ path('families_new') }}" class="btn btn-primary btn-lg">
+            <i class="glyphicon glyphicon-chevron-left glyphicon-white"></i> new</a>
+
+            <a class="btn btn-info btn-lg" href="{{ path('children') }}">
+                <i class="glyphicon glyphicon-cog"></i>
+                Go to the list
+            </a>
+         </p>
+    </div>
+    </div>      
+       <div id="tabs">
+              <ul>
+                <li><a href="#tabs-1">Family</a></li>
+                <li><a href="#tabs-2">Children</a></li>
+                <li><a href="#tabs-3">Address</a></li>
+                <li><a href="#tabs-4">Contact</a></li>
+              </ul>
+                <div id="tabs-1">
+                    <table class="table table-bordered">
+                                    <tbody>
+                            <tr>
+                                <th>Surname</th>
+                                <td>{{ entity.surname }}</td>
+                            </tr>
+                            <tr>
+                                <th>Name</th>
+                                <td>{{ entity.name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Job</th>
+                                <td>{{ entity.job }}</td>
+                            </tr>
+                            <tr>
+                                <td colspan='2'>
+                                   <div class="col-lg-6 col-lg-offset-5">
+                                   <div class="button-group">
+                                   
+                                   <div class="button-edit">
+                                         <a class="btn btn-info" href="{{ path('families_edit', { 'id': entity.id }) }}">
+                                            <i class="glyphicon glyphicon-edit icon-white"></i>
+                                            Edit
+                                        </a>
+                                        </div>   
+                                    <div class="button-delete">    
+                                        <form action="{{ path('families_delete', { 'id': entity.id }) }}" method="post">
+                                            {{ form_widget(delete_form) }}
+                                    
+                                         <button type="submit" class="btn btn-danger">
+                                         <i class="glyphicon glyphicon-trash icon-white"></i>
+                                         Delete
+                                         </button>
+                                        
+                                        </form>
+                                   </div>
+                                </td>
+                            </tr>        
+                        </tbody>
+                        </table>
+             </div><!--tab1-->
+        
+ <!--Ours Children-->    
+     <div id="tabs-2" >
+            <div class="row row-centered">
+            <div class="box col-md-12 centered">
+                <p class="center-block"> 
+                   <a class="btn btn-primary btn-lg" href="{{ path('children_new',{'family': entity.id}) }}">
+                        <i class="glyphicon glyphicon-cog"></i>
+                        new
+                    </a>
+                 </p>
+               </div>  
+               </div>  
+                 {% if children %}
+
+                    <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
+                        <tbody>
+                         {% for child in children %}
+                            <tr>
+                               <td>
+                                    <a href="{{path('children_show', {'id': child.id})}}"><img width= "20%" height= "10%" src="/uploads/{{child.image.path}}{{ child.image.name }}"></td></a>
+                                </td>
+
+                                <td class="center">{{ child.name }} {{ child.surname }}</td>  
+                                <td class="center">
+                                    <a class="btn btn-success" href="{{ path('children_show', { 'id': child.id }) }}">
+                                        <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                                        View
+                                    </a>
+                                    <a class="btn btn-info" href="{{ path('children_edit', { 'id': child.id }) }}">
+                                        <i class="glyphicon glyphicon-edit icon-white"></i>
+                                        Edit
+                                    </a>
+                                    <a class="btn btn-danger" href="#">
+                                        <i class="glyphicon glyphicon-trash icon-white"></i>
+                                        Delete
+                                    </a>
+                                </td>
+                            </tr>
+                    {% endfor %}
+                    </tbody>
+
+                </table>
+                    {% endif %}   
+      
+            </div><!--tab2-->     
+
+<!--Start Address--> 
+    <div id="tabs-3">    
+                {%- if entity.address == false -%}
+                    
+                    <p class="center-block">
+                        <a href="{{ path('address_new', {'who':'families', 'id': entity.id }) }}" class="btn btn-primary btn-lg">
+                        <i class="glyphicon glyphicon-chevron-left glyphicon-white"></i> 
+                        Create Address
+                        </a>
+                    </p>
+                  
+                {%else%}
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <th>Street</th>
+                                <td>{{ entity.address.street }}</td>
+                            </tr>
+                            <tr>
+                                <th>Number</th>
+                                <td>{{ entity.address.number }}</td>
+                            </tr>
+                            <tr>
+                                <th>Complement</th>
+                                <td>{{ entity.address.complement }}</td>
+                            </tr>
+                            <tr>
+                                <th>Ciudad</th>
+                                <td>{{ entity.address.ciudad }}</td>
+                            </tr>
+                            <tr>
+                                <th>Postcode</th>
+                                <td>{{ entity.address.postcode }}</td>
+                            </tr>
+                            <tr>               
+                                <td colspan="2">
+                                   <p> 
+                                  <a class="btn btn-info" href="{{ path('address_edit', { 'id': entity.address.id }) }}">
+                                        <i class="glyphicon glyphicon-edit icon-white"></i>
+                                        Edit
+                                    </a>
+                                    <form action="{{ path('address_delete', { 'id': entity.address.id }) }}" method="post">
+                                        {{ form_widget(delete_form) }}
+                                        <button type="submit" class="btn btn-danger">
+                                             <i class="glyphicon glyphicon-trash icon-white"></i>
+                                             Delete
+                                        </button>
+                                    </form>
+                                   </td> 
+                            </tr> 
+                </tbody>
+        </table>   
+        {%- endif -%} 
+         
+</div><!--end tabs3-->
+<!--end Address Content-->
+<!-- Contact Content-->
+<div id="tabs-4">                   
+                {%- if entity.contact == false -%}
+                    
+                    <p class="center-block">
+                        <a href="{{ path('contact_new', {'who':'families', 'id': entity.id }) }}" class="btn btn-primary btn-lg">
+                        <i class="glyphicon glyphicon-chevron-left glyphicon-white"></i> 
+                        Create Contact
+                        </a>
+                    </p>
+                  
+                {%else%}
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <th>Phone</th>
+                                <td>{{ entity.contact.phone }}</td>
+                            </tr>
+                            <tr>
+                                <th>Secondphone</th>
+                                <td>{{ entity.contact.secondPhone }}</td>
+                            </tr>
+                            <tr>
+                                <th>Email</th>
+                                <td>{{ entity.contact.email }}</td>
+                            </tr>
+                            <tr>
+                                <th>Phonejob</th>
+                                <td>{{ entity.contact.phoneJob }}</td>
+                            </tr>
+                            <tr>
+                                <th>Secondphonejob</th>
+                                <td>{{ entity.contact.secondPhoneJob }}</td>
+                            </tr>
+                            <tr>               
+                                <td colspan="2">
+                                   <p> 
+                                  <a class="btn btn-info" href="{{ path('contact_edit', { 'id': entity.contact.id }) }}">
+                                        <i class="glyphicon glyphicon-edit icon-white"></i>
+                                        Edit
+                                    </a>
+                                    <form action="{{ path('contact_delete', { 'id': entity.contact.id }) }}" method="post">
+                                        {{ form_widget(delete_form) }}
+                                        <button type="submit" class="btn btn-danger">
+                                             <i class="glyphicon glyphicon-trash icon-white"></i>
+                                             Delete
+                                        </button>
+                                    </form>
+                                   </td> 
+                            </tr> 
+                </tbody>
+        </table>   
+        {%- endif -%} 
+            </div><!--tabs4-->
+        </div><!--tabs-->
+    </div><!--/span--><!--end2-->
+</div>
+
+ {% javascripts
+    '@AcmeThemesBundle/Resources/public/kinder/bower_components/bootstrap/dist/js/*'
+    
+    '@AcmeThemesBundle/Resources/public/kinder/ui/js/jquery-ui.min.js'
+    
+    '@AcmeThemesBundle/Resources/public/kinder/js/kindergarten.js'
+    
+    %}
+
+    <script src="{{ asset_url }}"></script>
+     
+
+
+{% endjavascripts %}
+
+<script type="text/javascript">
+    kindergarten.layoutTabs();
+    kindergarten.panelAccordion();
+</script>  
+{% endblock %}

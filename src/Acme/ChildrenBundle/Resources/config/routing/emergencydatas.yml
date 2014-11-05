@@ -1,0 +1,30 @@
+emergencydatas:
+    pattern:  /emergencydatas
+    defaults: { _controller: "AcmeChildrenBundle:EmergencyDatas:index" }
+
+emergencydatas_show:
+    pattern:  /emergencydatas/{id}/show
+    defaults: { _controller: "AcmeChildrenBundle:EmergencyDatas:show" }
+
+emergencydatas_new:
+    pattern:  /emergencydatas/new
+    defaults: { _controller: "AcmeChildrenBundle:EmergencyDatas:new" }
+
+emergencydatas_create:
+    pattern:  /emergencydatas/create
+    defaults: { _controller: "AcmeChildrenBundle:EmergencyDatas:create" }
+    requirements: { _method: post }
+
+emergencydatas_edit:
+    pattern:  /emergencydatas/{id}/edit
+    defaults: { _controller: "AcmeChildrenBundle:EmergencyDatas:edit" }
+
+emergencydatas_update:
+    pattern:  /emergencydatas/{id}/update
+    defaults: { _controller: "AcmeChildrenBundle:EmergencyDatas:update" }
+    requirements: { _method: post }
+
+emergencydatas_delete:
+    pattern:  /emergencydatas/{id}/delete
+    defaults: { _controller: "AcmeChildrenBundle:EmergencyDatas:delete" }
+    requirements: { _method: post }

@@ -1,0 +1,30 @@
+children:
+    pattern:  /
+    defaults: { _controller: "AcmeChildrenBundle:Children:index" }
+
+children_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "AcmeChildrenBundle:Children:show" }
+
+children_new:
+    pattern:  /new
+    defaults: { _controller: "AcmeChildrenBundle:Children:new" }
+
+children_create:
+    pattern:  /create
+    defaults: { _controller: "AcmeChildrenBundle:Children:create" }
+    requirements: { _method: post }
+
+children_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "AcmeChildrenBundle:Children:edit" }
+
+children_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "AcmeChildrenBundle:Children:update" }
+    requirements: { _method: post }
+
+children_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "AcmeChildrenBundle:Children:delete" }
+    requirements: { _method: post }

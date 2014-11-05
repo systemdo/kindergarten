@@ -1,0 +1,41 @@
+<h1>AttendanceEmployed list</h1>
+
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Date</th>
+            <th>Clockin</th>
+            <th>Clockout</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('attendanceemployed_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{% if entity.date %}{{ entity.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>{{ entity.clockIn }}</td>
+            <td>{{ entity.clockOut }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('attendanceemployed_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('attendanceemployed_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<ul>
+    <li>
+        <a href="{{ path('attendanceemployed_new') }}">
+            Create a new entry
+        </a>
+    </li>
+</ul>

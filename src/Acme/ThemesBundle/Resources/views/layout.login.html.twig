@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+        
+
+        Licensed under the Apache License v2.0
+        http://www.apache.org/licenses/LICENSE-2.0
+
+        ===
+    -->
+    <meta charset="utf-8">
+    <title>{% block title %}KinderGarten{% endblock %}</title>
+     {% block stylesheets %}
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- The styles -->
+    
+    
+    <link href="{{ asset('bundles/acmethemes/kinder/css/jquery.dataTables.min.css')}}" rel="stylesheet">
+   <link href="{{ asset('bundles/acmethemes/kinder/css/bootstrap-amelia.min.css')}}" rel="stylesheet">
+   <link href="{{ asset('bundles/acmethemes/kinder/css/kindergarden.css')}}" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="{{ asset('bundles/acmethemes/kinder/bower_components/html5shiv/dist/html5shiv.js')}}"></script>
+      <script src="{{ asset('bundles/acmethemes/kinder/bower_components/respond/dest/respond.min.js')}}"></script>
+    <![endif]-->
+    <!-- The fav icon -->
+
+    <script src="{{ asset('bundles/acmethemes/kinder/bower_components/jquery/jquery.min.js')}}"></script>
+
+    <link rel="shortcut icon" href="img/favicon.ico">
+    {% endblock %}
+</head>
+
+<body>
+<div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12">
+         {% block body %}{% endblock %}   
+        </div>
+        </div>
+        </div>
+            
+
+    
+    
+       
+    <footer class="row">
+        {% block footer %}{% endblock %}
+        </footer>
+
+
+<!-- external javascript -->
+{% block javascripts %}
+
+   <script src="{{('/bundles/acmethemes/kinder/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+
+  
+   <script src="{{('/bundles/acmethemes/kinder/js/kindergarden.js')}}"></script>
+{% endblock %}
+</body>
+</html>

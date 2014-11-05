@@ -1,0 +1,68 @@
+{% extends "AcmeThemesBundle::layout.html.twig" %}
+{% block body %}
+
+<style>
+  #selectable .ui-selecting { background: #FECA40; }
+  #selectable .ui-selected { background: #F39814; color: white; }
+  #selectable { list-style-type: none; margin: 0; padding: 0; width: 350px; }
+  #selectable li { margin: 3px; padding: 1px; float: left; width: 100px; height: 80px; font-size: 4em; text-align: center; }
+  </style>
+<div class="row"><!--1-->
+        <div class="box col-md-12"><!--2-->
+<div class="box col-md-12"><!--2-->        
+<ol id="selectable">
+  <li class="ui-state-default">1</li>
+  <li class="ui-state-default">2</li>
+  <li class="ui-state-default">3</li>
+  <li class="ui-state-default">4</li>
+  <li class="ui-state-default">5</li>
+  <li class="ui-state-default">6</li>
+  <li class="ui-state-default">7</li>
+  <li class="ui-state-default">8</li>
+  <li class="ui-state-default">9</li>
+  <li class="ui-state-default"></li>
+  <li class="ui-state-default">0</li>
+   <li class="ui-state-default send"> SEND</li>
+</ol>
+</div>
+<br/>
+<br/>
+<div class="box col-md-12"><!--2-->        
+
+<form action="{{ path('attendanceemployed_create') }}" method="post" {{ form_enctype(form) }}>
+    <div class="form-group">
+                        <div class="input-group input-group">
+                        <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-user red"></i></span>
+                        <input type="text" class="form-control" name="_username" required placeholder="Username">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                         <div class="input-group input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock red"></i></span>
+                        <input type="password" class="form-control" required name="_password" placeholder="Password">
+                        </div>
+                    </div>
+                     <button type="submit" name="attendance" class="btn btn-danger">Attendance</button>
+</form>
+</div><!--/span--><!--end2-->
+</div><!--/span--><!--end2-->
+    </div><!--end1-->
+{% javascripts
+    '@AcmeThemesBundle/Resources/public/kinder/bower_components/bootstrap/dist/js/*'
+    
+    '@AcmeThemesBundle/Resources/public/kinder/ui/js/*'
+
+    '@AcmeThemesBundle/Resources/public/kinder/js/kindergarten.js'
+    
+    %}
+
+    <script src="{{ asset_url }}"></script>
+
+{% endjavascripts %}
+
+<script type="text/javascript">
+    kindergarten.ClockIn();
+</script>
+{% endblock %}

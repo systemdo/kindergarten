@@ -1,0 +1,11 @@
+acme_children_children:
+    resource: "@AcmeChildrenBundle/Resources/config/routing/children.yml"
+    prefix:   /children
+
+acme_children_emergencydatas:
+    resource: "@AcmeChildrenBundle/Resources/config/routing/emergencydatas.yml"
+
+acme_children_doctors:
+    resource: "@AcmeChildrenBundle/Resources/config/routing/doctors.php"
+    prefix:   /doctors
+

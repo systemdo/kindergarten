@@ -1,0 +1,38 @@
+{% extends "AcmeThemesBundle::layout.html.twig" %}
+{% block body %}
+<div class="row"><!--1-->
+<div class="container">
+    <p class="center-block"> 
+       <a class="btn btn-primary btn-lg" href="{{ path('users') }}">
+            <i class="glyphicon glyphicon-cog"></i>
+            Go to list Users
+        </a>
+    </p>   
+    <div class="box col-md-12"><!--2-->
+        <div class="box-inner"><!--3-->
+            <div class="box-header well" data-original-title="">
+               <h2><i class="glyphicon glyphicon-user"></i> Edit</h2>
+            </div>
+            <div class="box-content"><!--4-->
+<form action="{{ path('users_create') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <p>
+        <button type="submit" class="btn btn-default">Create</button>
+    </p>
+</form>
+
+  {% javascripts
+    '@AcmeThemesBundle/Resources/public/kinder/bower_components/bootstrap/dist/js/*'
+    
+    '@AcmeThemesBundle/Resources/public/kinder/ui/js/*'
+    '@AcmeThemesBundle/Resources/public/kinder/js/kindergarten.js'
+    %}
+
+    <script src="{{ asset_url }}"></script>
+
+
+{% endjavascripts %}
+<script type="text/javascript">
+    kindergarten.layoutSelect();
+</script>
+{% endblock %}

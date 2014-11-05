@@ -1,0 +1,210 @@
+{% extends "AcmeThemesBundle::layout.html.twig" %}
+{% block body %}
+<div class="row"><!--1-->
+    <div class="box col-md-12"><!--2-->
+    <div class="row row-centered">
+    <div class="box col-md-12 centered">
+        <p class="center-block"> 
+           <a class="btn btn-primary btn-lg" href="{{ path('children_new') }}">
+                <i class="glyphicon glyphicon-cog"></i>
+                new
+            </a>
+            <a class="btn btn-primary btn-lg" href="{{ path('children') }}">
+                <i class="glyphicon glyphicon-cog"></i>
+                Go to the list
+            </a>
+         </p>  
+
+     </div>
+     </div>
+    <div  class="accordion">
+        <h3>Children</h3>
+        <div>
+
+                <form action="{{ path('children_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+                    {{ form_widget(edit_form) }} 
+                     <div class="col-lg-6">
+                     <div class="button-group">
+                                   
+                     <div class="button-edit">
+                    <button type="submit" class="btn btn-info">
+                     <i class="glyphicon glyphicon-trash icon-white"></i>
+                        Edit
+                    </button> 
+
+                </form>
+
+                    </div>   
+                    <div class="button-delete">   
+                   <form action="{{ path('children_delete', { 'id': entity.id }) }}" method="post">
+                        {{ form_widget(delete_form) }}
+                        <button type="submit" class="btn btn-danger">
+                             <i class="glyphicon glyphicon-trash icon-white"></i>
+                             Delete
+                        </button>     
+                    </form>
+                </div><!--group-->
+                </div><!--group-->
+                </div><!--delete-->
+        </div><!--endseccion1-->
+      
+    <!-- Emergency datas-->
+    <h3> Emergency Datas</h3>
+    <div><!--2-->
+    
+        {%- if sos == false  or sos == null -%}
+            <p class="center-block">
+                <a href="{{ path('emergencydatas_new') }}" class="btn btn-primary btn-lg">
+                    <i class="glyphicon glyphicon-chevron-left glyphicon-white"></i> 
+                    Create Emergencys Data
+                </a>
+            </p>    
+         {%else%}
+         <table class="table table-bordered">
+          <tbody>
+                <tr>
+                    <th>Healthinsurance</th>
+                    <td>{{ sos.healthInsurance }}</td>
+                </tr>
+                <tr>
+                    <th>Anothercontact</th>
+                    <td>{{ sos.anotherContact }}</td>
+                </tr>
+                {%- if sos.doctor == false or sos.doctor == null  -%}
+                <tr>
+                    <th colspan="2">
+                        <p class="center-block">
+                            <a href="{{ path('doctors_new') }}" class="btn btn-primary btn-lg">
+                            <i class="glyphicon glyphicon-chevron-left glyphicon-white"></i> 
+                            Create Doctor
+                            </a>
+                        </p>
+                    </th>                   
+                </tr>
+                 {% else %}
+                <tr>
+                <td colspan="2">
+                <div class="box col-md-12"><!--2-->
+                    <div class="box-inner"><!--3-->
+                        <div class="box-header well" data-original-title="">
+                           <h2><i class="glyphicon glyphicon-user"></i> Doctor</h2>
+                        </div>
+                        <div class="box-content"><!--4-->    
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                <th>Name</th>
+                                <td>{{ sos.doctor.name }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Surname</th>
+                                    <td>{{ sos.doctor.surname }}</td>
+                                </tr>
+                                {% if sos.doctor.address %}
+                                 <tr>
+                                    <th>Street</th>
+                                    <td>{{ sos.doctor.address.street }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Number</th>
+                                    <td>{{ sos.doctor.address.number }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Complement</th>
+                                    <td>{{ sos.doctor.address.complement }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Ciudad</th>
+                                    <td>{{ sos.doctor.address.ciudad }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Postcode</th>
+                                    <td>{{ sos.doctor.address.postcode }}</td>
+                                </tr>   
+                                {% endif %}
+                                {% if sos.doctor.contact %}
+                                <tr>
+                                    <th>Phone</th>
+                                    <td>{{ sos.doctor.contact.phone }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Secondphone</th>
+                                    <td>{{ sos.doctor.contact.secondPhone }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Email</th>
+                                    <td>{{ sos.doctor.contact.email }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Phonejob</th>
+                                    <td>{{ sos.doctor.contact.phoneJob }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Secondphonejob</th>
+                                    <td>{{ sos.doctor.contact.secondPhoneJob }}</td>
+                                </tr>
+                                {% endif %}
+                           </tbody>
+                        </table>   
+                    </div><!--4-->
+                </div><!--3-->
+                </div>
+                </td>  
+                </tr> <!-- doctor-->
+               {%- endif -%} 
+          
+               <tr>
+                    <td colspan="2">
+                      <div class="col-lg-6">
+                     <div class="button-group">
+                                   
+                     <div class="button-edit">
+                            <a class="btn btn-info" href="{{ path('emergencydatas_edit', { 'id': sos.id }) }}">
+                                <i class="glyphicon glyphicon-edit icon-white"></i>
+                                Edit
+                            </a>
+                             </div>   
+                        <div class="button-delete">   
+                            <form action="{{ path('emergencydatas_delete', { 'id': sos.id }) }}" method="post">
+                            {{ form_widget(delete_form) }}
+                                <button type="submit" class="btn btn-danger">
+                                     <i class="glyphicon glyphicon-trash icon-white"></i>
+                                     Delete
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    </div>
+                    </td> 
+               </tr> 
+      </tbody>
+    </table>     
+  {%- endif -%}       
+                    </p>
+         
+        </div><!--/span--><!--end2-->
+<!--End emargency Datas-->
+
+ 
+</div><!--end1-->
+</div><!--end1-->
+</div><!--end1-->
+{% javascripts
+    '@AcmeThemesBundle/Resources/public/kinder/bower_components/bootstrap/dist/js/*'
+    
+    '@AcmeThemesBundle/Resources/public/kinder/ui/js/jquery-ui.min.js'
+
+    '@AcmeThemesBundle/Resources/public/kinder/js/kindergarten.js'
+    
+    %}
+
+    <script src="{{ asset_url }}"></script>
+
+{% endjavascripts %}
+
+<script type="text/javascript">
+    kindergarten.layoutDate();
+    kindergarten.panelAccordion();
+     kindergarten.layoutSelect();
+</script>
+ {% endblock %}

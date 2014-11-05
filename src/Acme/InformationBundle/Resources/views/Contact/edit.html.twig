@@ -1,0 +1,42 @@
+{% extends "AcmeThemesBundle::layout.html.twig" %}
+{% block body %}
+<div class="row"><!--1-->
+    <p class="center-block"> 
+         <a href="{{ path('children') }}" class="btn btn-primary btn-lg">
+            <i class="glyphicon glyphicon-chevron-left glyphicon-white"></i>
+             Back
+       </a>
+       <a class="btn btn-primary btn-lg" href="{{ path('children') }}">
+            <i class="glyphicon glyphicon-cog"></i>
+            Go to Children
+        </a>
+    </p>   
+    <div class="box col-md-12"><!--2-->
+        <div class="box-inner"><!--3-->
+            <div class="box-header well" data-original-title="">
+               <h2><i class="glyphicon glyphicon-user"></i> Edit</h2>
+            </div>
+            <div class="box-content"><!--4-->
+
+            <form action="{{ path('contact_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+                {{ form_widget(edit_form) }}
+                <p>
+                    <button type="submit" class="btn btn-info" >
+                    <i class="glyphicon glyphicon-trash icon-white"></i>
+                    Edit
+                    </button>
+                </p>
+            </form>
+            <form action="{{ path('contact_delete', { 'id': entity.id }) }}" method="post">
+                {{ form_widget(delete_form) }}
+                <button type="submit" class="btn btn-danger">
+                     <i class="glyphicon glyphicon-trash icon-white"></i>
+                     Delete
+                </button>
+            </form>
+            
+         </div><!--end4-->
+        </div><!--end3-->
+    </div><!--/span--><!--end2-->
+</div>
+{% endblock %}

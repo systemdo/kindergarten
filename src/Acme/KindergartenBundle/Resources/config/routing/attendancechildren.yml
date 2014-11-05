@@ -1,0 +1,34 @@
+attendancechildren:
+    pattern:  /
+    defaults: { _controller: "AcmeKindergartenBundle:AttendanceChildren:index" }
+
+attendancechildren_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "AcmeKindergartenBundle:AttendanceChildren:show" }
+
+attendancechildren_new:
+    pattern:  /new
+    defaults: { _controller: "AcmeKindergartenBundle:AttendanceChildren:new" }
+
+attendancechildren_create:
+    pattern:  /create
+    defaults: { _controller: "AcmeKindergartenBundle:AttendanceChildren:create" }
+    requirements: { _method: post }
+
+attendancechildren_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "AcmeKindergartenBundle:AttendanceChildren:edit" }
+
+attendancechildren_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "AcmeKindergartenBundle:AttendanceChildren:update" }
+    requirements: { _method: post }
+
+attendancechildren_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "AcmeKindergartenBundle:AttendanceChildren:delete" }
+    requirements: { _method: post }
+
+attendancechildren_infochild:
+    pattern:  /infochild
+    defaults: { _controller: "AcmeKindergartenBundle:AttendanceChildren:infoChild" }

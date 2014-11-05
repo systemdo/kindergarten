@@ -1,0 +1,30 @@
+contact:
+    pattern:  /
+    defaults: { _controller: "AcmeInformationBundle:Contact:index" }
+
+contact_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "AcmeInformationBundle:Contact:show" }
+
+contact_new:
+    pattern:  /new/{who}/{id}
+    defaults: { _controller: "AcmeInformationBundle:Contact:new" }
+
+contact_create:
+    pattern:  /create
+    defaults: { _controller: "AcmeInformationBundle:Contact:create" }
+    requirements: { _method: post }
+
+contact_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "AcmeInformationBundle:Contact:edit" }
+
+contact_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "AcmeInformationBundle:Contact:update" }
+    requirements: { _method: post }
+
+contact_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "AcmeInformationBundle:Contact:delete" }
+    requirements: { _method: post }

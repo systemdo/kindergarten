@@ -1,0 +1,42 @@
+{% extends "AcmeThemesBundle::layout.html.twig" %}
+{% block body %}
+
+<div class="row"><!--1-->
+<div class="container">
+    <div class="box col-md-12"><!--2-->
+     {% if app.session.flashbag.get('Password') is defined %}
+        {% for flashMessage in app.session.flashbag.get('Password') %}
+                 <div class="alert lert-dismissable alert-{{ flashMessage.type}}">
+                <button class="close" data-dismiss="alert" type="button">×</button>
+    
+                      <strong>{{ flashMessage.message }}</strong>
+                 </div>     
+        {% endfor %}
+        {% endif %}
+        <div class="box-inner"><!--3-->
+            <div class="box-header well" data-original-title="">
+               <h2><i class="glyphicon glyphicon-user"></i> Change Password</h2>
+            </div>
+            <div class="box-content"><!--4-->
+<form action="{{ path('changepassword_update') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <p>
+        <button type="submit" class="btn btn-default">Create</button>
+    </p>
+</form>
+
+  {% javascripts
+    '@AcmeThemesBundle/Resources/public/kinder/bower_components/bootstrap/dist/js/*'
+    
+    '@AcmeThemesBundle/Resources/public/kinder/ui/js/*'
+    '@AcmeThemesBundle/Resources/public/kinder/js/kindergarten.js'
+    %}
+
+    <script src="{{ asset_url }}"></script>
+
+
+{% endjavascripts %}
+<script type="text/javascript">
+    //kindergarten.layoutSelect();
+</script>
+{% endblock %}

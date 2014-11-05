@@ -1,0 +1,4 @@
+acme_employed_employeds:
+    resource: "@AcmeEmployedBundle/Resources/config/routing/employeds.yml"
+    prefix:   /employeds
+

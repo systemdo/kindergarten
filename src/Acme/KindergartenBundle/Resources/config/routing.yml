@@ -1,0 +1,12 @@
+acme_kindergarten_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: AcmeKindergartenBundle:Default:index }
+
+AcmeKindergartenBundle_attendancechildren:
+        resource: "@AcmeKindergartenBundle/Resources/config/routing/attendancechildren.yml"
+        prefix:   /
+
+AcmeKindergartenBundle_attendanceemployed:
+        resource: "@AcmeKindergartenBundle/Resources/config/routing/attendanceemployed.yml"
+        prefix:   /attendanceemployed
+

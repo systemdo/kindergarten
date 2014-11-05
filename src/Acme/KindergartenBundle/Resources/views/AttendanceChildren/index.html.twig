@@ -1,0 +1,218 @@
+{% extends "AcmeThemesBundle::layout.html.twig" %}
+{% block body %}
+<style>
+  
+  .div .thumbnail { margin: 0 0 0.4em; cursor: move; }
+</style>
+<div class="row">
+<div class="accordion panel panel-primary">
+
+  <div class="panel-heading">
+    <h3>Attendance</h3>
+  </div>
+    <div class="panel-body" id="attendance">
+        {% for child in children %}
+         {% if child.getStatus() == true %}
+
+
+          <div class="col-sm-2 col-md-2 drag drag-on">
+            <div class="thumbnail" data-accion="off" id-child="{{child.id}}">
+             <span class="label status label-danger">online</span>
+              <img src="/uploads/{{child.image.path}}{{ child.image.name }}" alt="">
+              <div class="caption">
+                <p>
+                  <span class="label label-primary">{{child.surname}}</span>
+                  <a href="#"><span class="label label-success infochild" id-child="{{child.id}}">info</span></a>
+                </p>
+              </div>
+            </div>
+          </div>
+
+        {% endif %}  
+        {% endfor %}  
+              
+    </div>
+   
+</div>
+
+
+<div class="accordion panel panel-info" >
+
+  <div class="panel-heading">
+    <h3>No Attendance</h3>
+  </div>
+  <div class="panel-body" id="noattendance">
+       
+       {% for child in children %}
+         {% if child.getStatus() == false %}
+
+          <div class="col-sm-2 col-md-2 drag drag-off">
+            <div class="thumbnail" data-accion="on" id-child="{{child.id}}">
+             <span class="label status label-info">offline</span>
+              <img src="/uploads/{{child.image.path}}{{ child.image.name }}" alt="">
+              <div class="caption">
+                <p>
+                  <span class="label label-primary">{{child.surname}}</span>
+                  <a href="#"><span class="label label-success infochild" id-child="{{child.id}}">info</span></a>
+                </p>
+              </div>
+            </div>
+          </div>
+          
+        {% endif %}  
+        {% endfor %}  
+        
+
+    </div>
+</div>
+
+</div>
+<div id="modal">
+</div>
+
+{% javascripts
+    '@AcmeThemesBundle/Resources/public/kinder/bower_components/bootstrap/dist/js/*'
+    
+    '@AcmeThemesBundle/Resources/public/kinder/ui/js/*'
+
+    '@AcmeThemesBundle/Resources/public/kinder/js/kindergarten.js'
+    
+    %}
+
+    <script src="{{ asset_url }}"></script>
+
+{% endjavascripts %}
+
+      
+<script type="text/javascript">
+   
+kindergarten.infoChild();
+$( document ).ready(function(){
+
+     $( ".drag-on" ).draggable({
+      //appendTo: "#attendance",
+      helper: "clone",
+      cursor: "move",
+     //containment: "document",
+      //stack: "#attendance div",
+      //snap: true
+    });
+
+     $( ".drag-off" ).draggable({
+      //appendTo: "#attendance",
+      helper: "clone",
+      cursor: "move",
+     //containment: "document",
+      //stack: "#attendance div",
+      //snap: true
+    });
+      
+    var atten =  $( "#attendance" );
+          atten.droppable({
+          accept: ".drag-off",  
+          drop: function( event, ui ) {
+            //console.debug(ui.draggable.find('thumbnail'));
+            //console.log(ui.draggable.find('.thumbnail'));
+            item = ui.draggable;
+
+            //alert(item);
+            var thumb =item.find('.thumbnail');
+            var data = "accion="+thumb.attr('data-accion')+"&child_id="+thumb.attr('id-child');
+            var url ="create";
+            $.ajax({
+                    data:  data,
+
+                    url:   url,
+
+                    type:  'post',
+
+                    dataType: "json",
+
+                    success: function(data)
+                    {
+                        if(data.data == "on")
+                        {   
+
+                            item.appendTo(atten);
+                            //item.find('.status').remove();
+                            //alert(data.data);
+                            //alert(item.find('.status').html());
+                            var status = item.find('.status');
+                            var drag = item.find('.drag');
+                            console.debug(drag);
+                            status.removeClass(' label-info');
+                            status.addClass(' label-danger');
+                            
+                            drag.removeClass('drag-off');
+                            drag.addClass('drag-on');
+
+                            thumb.attr('data-accion', 'off');
+                            status.text('online');
+                            $( ".accordion" ).accordion( "refresh" );
+                            //item.remove();
+                        }else{
+                                alert(data.data);
+                                return false;
+                            }   
+                    }
+            });
+            
+          }
+        });
+
+
+        var noatten =  $( "#noattendance" );
+
+          noatten.droppable({
+          accept: ".drag-on",  
+          drop: function( event, ui ) {
+            item = ui.draggable;
+            var thumb =item.find('.thumbnail');
+            var data = "accion="+thumb.attr('data-accion')+"&child_id="+thumb.attr('id-child');
+            var url ="create";
+            $.ajax({
+                    data:  data,
+
+                    url:   url,
+
+                    type:  'post',
+
+                    dataType: "json",
+
+                    success: function(data)
+                    {
+                       
+                        if(data.data == "off")
+                        {   
+                            item.appendTo(noatten);
+                             //alert(data.data);
+                            //alert(item.find('.status').html());
+                            var status = item.find('.status');
+                            var drag = item.find('.drag');
+                            
+                            status.removeClass(' label-danger');
+                            status.addClass(' label-info');
+
+                            console.debug(drag);
+
+                            drag.removeClass(' drag-on');
+                            drag.addClass(' drag-off');
+                            
+                            thumb.attr('data-accion', 'on');
+                            status.text('offline');
+                            $( ".accordion" ).accordion( "refresh" );
+                        //item.remove();
+                        }else{
+                                alert(data.data);
+                                return false;
+                            }   
+                    }
+            });
+            //alert(thumb.attr('id-child'));
+        }
+        });   
+
+});
+</script>
+
+{% endblock %}

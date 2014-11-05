@@ -1,0 +1,30 @@
+address:
+    pattern:  /
+    defaults: { _controller: "AcmeInformationBundle:Address:index" }
+
+address_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "AcmeInformationBundle:Address:show" }
+
+address_new:
+    pattern:  /new/{who}/{id}
+    defaults: { _controller: "AcmeInformationBundle:Address:new" }
+
+address_create:
+    pattern:  /create
+    defaults: { _controller: "AcmeInformationBundle:Address:create" }
+    requirements: { _method: post }
+
+address_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "AcmeInformationBundle:Address:edit" }
+
+address_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "AcmeInformationBundle:Address:update" }
+    requirements: { _method: post }
+
+address_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "AcmeInformationBundle:Address:delete" }
+    requirements: { _method: post }

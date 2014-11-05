@@ -1,0 +1,44 @@
+{% extends "AcmeThemesBundle::layout.login.html.twig" %}
+{% block body %}
+{% if error %}
+<div>{{ error.message }}</div> 
+{% endif %}
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">KinderGarden</a>
+        </div>
+        <center>
+            <div class="navbar-collapse collapse" id="navbar-main">
+                <form class="navbar-form navbar-right" role="search" action="{{ path('login_check') }}" method="post">
+                    <div class="form-group">
+                        <div class="input-group input-group">
+                        <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-user red"></i></span>
+                        <input type="text" class="form-control" name="_username" required placeholder="Username">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                         <div class="input-group input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock red"></i></span>
+                        <input type="password" class="form-control" required name="_password" placeholder="Password">
+                        </div>
+                    </div>
+                     <button type="submit" name="login" class="btn btn-danger">Login</button>
+                </form>
+            </div>
+        </center>
+    </div>
+</div>
+<div class="jumbotron">
+  
+  <img width="100%" style ="max-heigth:60%" src="{{('/bundles/acmethemes/kinder/images/espaconave.jpg')}}"/>
+
+ </div>
+{% endblock %}

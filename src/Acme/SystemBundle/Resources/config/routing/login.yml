@@ -1,0 +1,12 @@
+login:
+    pattern:  /
+    defaults: { _controller: "AcmeSystemBundle:Login:login" }
+
+login_check:
+    pattern:  /login_check/
+    #defaults: { _controller: "AcmeSystemBundle:System:show" }
+
+login_logout:
+     pattern:  /logout
+     #defaults: { _controller: "AcmeSystemBundle:Login:login" }
+

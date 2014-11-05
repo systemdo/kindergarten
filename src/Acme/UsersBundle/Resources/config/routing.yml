@@ -1,0 +1,8 @@
+AcmeUsersBundle_users:
+        resource: "@AcmeUsersBundle/Resources/config/routing/users.yml"
+        prefix:   /users
+
+AcmeUsersBundle_role:
+        resource: "@AcmeUsersBundle/Resources/config/routing/role.yml"
+        prefix:   /role
+

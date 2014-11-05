@@ -1,0 +1,51 @@
+{% extends "AcmeThemesBundle::layout.html.twig" %}
+{% block body %}
+<div class="row"><!--1-->
+<p class="center-block">
+                        
+    <a href="{{ path('children') }}" class="btn btn-primary btn-lg">
+    <i class="glyphicon glyphicon-chevron-left glyphicon-white"></i> Back to the list</a>
+</p>
+
+<div class="box col-md-6"><!--2-->
+    <div class="box-inner"><!--3-->
+        <div class="box-header well" data-original-title="">
+           <h2><i class="glyphicon glyphicon-user"></i> Children View</h2>
+
+   
+        </div>
+        <div class="box-content"><!--4-->
+            <table class="table table-bordered">
+
+    <tbody>
+        <tr>
+            <th>Username</th>
+            <td>{{ entity.username }}</td>
+        </tr>
+        <tr>
+                        <td colspan='2'>
+                            <p class="">
+                                 <a class="btn btn-info" href="{{ path('users_edit', { 'id': entity.id }) }}">
+                                    <i class="glyphicon glyphicon-edit icon-white"></i>
+                                    Edit
+                                </a>
+                                <form action="{{ path('users_delete', { 'id': entity.id }) }}" method="post">
+                                    {{ form_widget(delete_form) }}
+                            
+                                 <button type="submit" class="btn btn-danger">
+                                 <i class="glyphicon glyphicon-trash icon-white"></i>
+                                 Delete
+                                 </button>
+                                
+                                </form>
+                            </p>
+                        </td>
+                    </tr>
+    </tbody>
+</table>
+  </div><!--end4-->
+        </div><!--end3-->
+        </div><!--end2-->
+    </div><!--end1-->
+  
+{% endblock %}
